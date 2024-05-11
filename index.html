@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .photo-wrapper{
+    align-items: center;
+        display: grid;
+        background-color: rgb(255, 255, 255);
+        justify-content: space-between;
+   }
+   .photo-container{
+        align-items: center;
+        display: grid;
+        background-color: rgb(255, 255, 255);
+        
+    }
+     @media(max-width:80px){
+      .photo-wrapper{
+        grid-template-columns: repeat(5,100%);
+      }
+    }
+    @media(min-width:100px){
+      .photo-wrapper{
+        grid-template-columns: repeat(2,50%);
+      }
+    }
+    
+   
+  .container {
+   
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+   
+    text-align: center;
+margin-top: auto;
+  }
+ 
+  .username {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .logout-btn {
+    font-size: 8px;
+    padding: 10px 20px;
+    background-color: #ff4a0e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .logout-btn:hover {
+    background-color: #ec1212;
+  }
+  
+  
+  img{
+    width: 150px;
+    margin-left: 10px;
+  }
+  .star {
+  font-size: 20px;
+  color: #ccc; /* Default star color */
+  cursor: pointer;
+}
+.star1 {
+  font-size: 20px;
+  color: #ccc; /* Default star color */
+  cursor: pointer;
+}
+h3{
+    font-size: 7px;
+}
+p{
+    font-size: 7px;
+}
+.rating {
+  font-size: 10px;
+  color: #666;
+  margin-top: 20px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <div class="today">
+
+    
+    <div class="photo-container">
+      <div class="photo-wrapper">
+        <div class="img">
+          <a href="Wonder.Woman.Bloodlines.2019.1080P.Web-Dl(Cm)-1.mp4"  style="color:white;"  ><img src="wonder.jpg"width="100px"></a>
+          <div class="rating">
+            <span class="star2" onclick="rate(1)">★</span>
+            <span class="star2" onclick="rate(2)">★</span>
+            <span class="star2" onclick="rate(3)">★</span>
+            <span class="star2" onclick="rate(4)">★</span>
+            <span class="star2" onclick="rate(5)">★</span>
+    
+          </div>
+          <h3>Video Review Title</h3>
+          <p>Review Content goes here...</p>
+          <a href="Wonder.Woman.Bloodlines.2019.1080P.Web-Dl(Cm)-1.mp4"><button class="logout-btn" onclick="logout1()">Watch Now</button></a>
+
+        </div>
+        <div class="img">
+          <a href="One Piece Film Red [Bd] [720P] Mw (Cm)-1.mp4"  style="color:white;"  ><img src="One Piece  Film Red (2022).jpg"width="100px"></a><div class="rating">
+            <span class="star2" onclick="rate(6)">★</span>
+            <span class="star2" onclick="rate(7)">★</span>
+            <span class="star2" onclick="rate(8)">★</span>
+            <span class="star2" onclick="rate(9)">★</span>
+            <span class="star2" onclick="rate(10)">★</span>
+    
+          </div>
+          <h3>Video Review Title</h3>
+          <p>Review Content goes here...</p>
+          <a href="One Piece Film Red [Bd] [720P] Mw (Cm)-1.mp4"><button class="logout-btn" onclick="">Watch Now</button></a>
+
+        </div>
+        <div class="img">
+          <a href="Death Is All Around 2024 Nf 1080P Web-Dl Cm-1.mp4"  style="color:white;"  ><img src="Death of All around.jpg"width="100px"></a>
+          <div class="rating">
+            <span class="star2" onclick="rate(11)">★</span>
+            <span class="star2" onclick="rate(12)">★</span>
+            <span class="star2" onclick="rate(13)">★</span>
+            <span class="star2" onclick="rate(14)">★</span>
+            <span class="star2" onclick="rate(15)">★</span>
+    
+          </div>
+          <h3>Video Review Title</h3>
+          <p>Review Content goes here...</p>
+          <a href="Death Is All Around 2024 Nf 1080P Web-Dl Cm-1.mp4"><button class="logout-btn" onclick="logout1()">Watch Now</button></a>
+
+        </div>
+       
+        </div>
+        </div>
+        </div>
+    <div class="icon">
+        
+  
+ 
+<script>
+   // Function to handle rating
+function rate(rating) {
+  // Set the rating in localStorage
+  localStorage.setItem('rating', rating);
+
+  // Get all star elements
+  const starElements = document.querySelectorAll('.star');
+
+  // Loop through each star
+  starElements.forEach((star, index) => {
+    // Add 'active' class to stars up to the clicked star
+    if (index < rating) {
+      star.classList.add('active');
+    } else {
+      star.classList.remove('active');
+    }
+  });
+
+  // Display rating
+  const ratingElement = document.getElementById('rating');
+  ratingElement.textContent = `You rated this ${rating} star${rating !== 1 ? 's' : ''}.`;
+}
+
+// Check if rating is saved in localStorage and set stars accordingly
+document.addEventListener('DOMContentLoaded', function() {
+  const savedRating = localStorage.getItem('rating');
+  if (savedRating) {
+    rate(parseInt(savedRating)); // Call rate function to set stars
+  }
+});
+
+  window.onload = function() {
+    const savedUsername = localStorage.getItem('username');
+    if (savedUsername) {
+      document.getElementById('username').textContent = `${savedUsername}!`;
+    }
+  };
+
+  function logout() {
+    
+    // Redirect to the login page
+    window.location.href = 'One Piece Film Red [Bd] [720P] Mw (Cm)-1.mp4';
+  }
+  // Function to handle rating
+function rate(rating) {
+  // Set the rating in localStorage
+  localStorage.setItem('rating', rating);
+
+  // Get all star elements
+  const starElements = document.querySelectorAll('.star');
+
+  // Loop through each star
+  starElements.forEach((star, index) => {
+    // Change color of stars up to the clicked star
+    if (index < rating) {
+      star.style.color = 'gold';
+    } else {
+      star.style.color = '#ccc';
+    }
+  });
+}
+
+// Check if rating is saved in localStorage and set stars accordingly
+document.addEventListener('DOMContentLoaded', function() {
+  const savedRating = localStorage.getItem('rating');
+  if (savedRating) {
+    rate(parseInt(savedRating)); // Call rate function to set stars
+  }
+});
+
+
+// Function to handle rating
+function rate(rating) {
+  // Set the rating in localStorage
+  localStorage.setItem('rating', rating);
+
+  // Get all star elements
+  const starElements = document.querySelectorAll('.star2');
+
+  // Loop through each star
+  starElements.forEach((star, index) => {
+    // Change color of stars up to the clicked star
+    if (index < rating) {
+      star.style.color = 'gold';
+    } else {
+      star.style.color = '#ccc';
+    }
+  });
+}
+
+// Check if rating is saved in localStorage and set stars accordingly
+document.addEventListener('DOMContentLoaded', function() {
+  const savedRating = localStorage.getItem('rating');
+  if (savedRating) {
+    rate(parseInt(savedRating)); // Call rate function to set stars
+  }
+});
+function logout1() {
+    
+    // Redirect to the login page
+    window.location.href = 'fried pork.jpg';
+  }
+
+
+// Check if rating is saved in localStorage and set stars accordingly
+document.addEventListener('DOMContentLoaded', function() {
+  const savedRating = localStorage.getItem('rating');
+  if (savedRating) {
+    rate(parseInt(savedRating)); // Call rate function to set stars
+  }
+});
+
+  window.onload = function() {
+    const savedUsername = localStorage.getItem('username');
+    if (savedUsername) {
+      document.getElementById('username').textContent = `${savedUsername}!`;
+    }
+  };
+
+  function logout() {
+    
+    // Redirect to the login page
+    window.location.href = 'fried seabass.jpg';
+  }
+  // Function to handle rating
+function rate(rating) {
+  // Set the rating in localStorage
+  localStorage.setItem('rating', rating);
+
+  // Get all star elements
+  const starElements = document.querySelectorAll('.star2');
+
+  // Loop through each star
+  starElements.forEach((star, index) => {
+    // Change color of stars up to the clicked star
+    if (index < rating) {
+      star.style.color = 'gold';
+    } else {
+      star.style.color = '#ccc';
+    }
+  });
+}
+  
+
+</script>
+
+</body>
+</html>
